@@ -1,32 +1,18 @@
 const path = require('path');
 const webpack = require('webpack');
+const webpackMerge = require('webpack-merge');
 const HTMLWepackPlugin = require('html-webpack-plugin');
+
+const baseConfig = require('./webpack.config.base');
 
 const isDev = process.env.NODE_ENV === 'development';
 
-const config = {
+const config = webpackMerge(baseConfig, {
   entry: {
     app: path.join(__dirname, '../client/index.js'),
   },
   output: {
     filename: '[name].[hash:5].js',
-    path: path.join(__dirname, '../dist'),
-    publicPath: '/public/',
-  },
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /.jsx?$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-      },
-    ],
   },
   plugins: [
     new HTMLWepackPlugin({
@@ -34,14 +20,14 @@ const config = {
       title: 'webpack',
     }),
   ],
-};
+});
 
 if (isDev) {
   config.entry = {
     app: [
       'react-hot-loader/patch',
       path.join(__dirname, '../client/index.js'),
-    ]
+    ],
   };
   // 此处要确保文件夹中不存在dist目录
   // 否则webpack-dev-server会默认先检查dist目录中的内容
