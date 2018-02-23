@@ -45,5 +45,9 @@ if (module.hot) {
 ```
 
 ### 服务端渲染
-1. 
-2. 
+1. 必须先开启webpack-dev-server服务
+2. 利用axios从webpack-dev-server开启的服务中获得html的模板文件
+3. 利用webpack编译（将编译结果保存至内存中加快读写速度）获得server.entry内容（文本形式）
+4. 利用modile.Contructor的hack方法获取编译结果m.exports.default
+5. 利用ReactDOMServer.renderToString渲染得到结果
+6. 利用httpProxyMiddleware将请求代理到webpack-dev-server启动的服务中
