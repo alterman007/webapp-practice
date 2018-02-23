@@ -51,3 +51,19 @@ if (module.hot) {
 4. 利用modile.Contructor的hack方法获取编译结果m.exports.default
 5. 利用ReactDOMServer.renderToString渲染得到结果
 6. 利用httpProxyMiddleware将请求代理到webpack-dev-server启动的服务中
+
+### eslint
+- 相关依赖包括
+  - babel-eslint (解析jsx)
+  - eslint-loader（webpack使用）
+  - eslint-config-standard (eslint extends规则)
+- airbnb：react代码规则，其需安装的依赖项包括：
+  - eslint-config-airbnb
+  - eslint-plugin-import
+  - eslint-plugin-jsx-a11y
+  - eslint-plugin-react
+  - eslint-plugin-node
+  - eslint-plugin-promise
+  - eslint-plugin-standard
+
+
